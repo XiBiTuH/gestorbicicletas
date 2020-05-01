@@ -78,16 +78,6 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
     }
 
     @Override
-    public void mostraBicicletas() throws RemoteException {
-
-    }
-
-    @Override
-    public void devolverBicicleta() throws RemoteException {
-
-    }
-
-    @Override
     public String adicionarBicicleta(int dono, String quadro, String rodas, String transmissao, String travoes, String espigao, String guiador, String descricao) throws RemoteException {
 
         try {
@@ -100,11 +90,7 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
         return "succ";
     }
 
-    @Override
-    public void requisitarBicicleta() throws RemoteException {
-
-    }
-
+  
     @Override
     public ArrayList procurarKeyword(String keyword) throws RemoteException {
         //System.out.println("Entrei aqui");
@@ -155,7 +141,7 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
 
         }
 
-        return "Erro ao requisitar bicicleta.";
+        return "Erro ao requisitar a bicicleta.";
     }
 
     @Override
@@ -172,5 +158,21 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
         }
 
         return req;
+    }
+
+    @Override
+    public String devolverBicicleta(int bd) throws RemoteException {
+        for (int i = 0; bicicletas.size() > i; i++) {
+
+            if (bicicletas.get(i).getId() == bd) {
+                bicicletas.get(i).setDisponibilidade(true);
+                bicicletas.get(i).setRequisitante(-1);
+                return "Bicicleta devolvida com sucesso.";
+            }
+
+        }
+
+        return "Erro ao devolver a bicicleta.";
+
     }
 }

@@ -14,13 +14,7 @@ import java.util.ArrayList;
  */
 public interface interfaceServidor extends java.rmi.Remote   {
     
-    public void mostraBicicletas() throws RemoteException;
-    
     public String adicionarBicicleta(int dono, String quadro, String rodas, String transmissao, String travoes, String espigao, String guiador,String descricao) throws RemoteException;
-    
-    public void requisitarBicicleta() throws RemoteException;
-    
-    public void devolverBicicleta() throws RemoteException;
     
     public ArrayList procurarKeyword(String keyword) throws RemoteException;
 
@@ -31,6 +25,8 @@ public interface interfaceServidor extends java.rmi.Remote   {
     public String requisitarBicicleta(int id,int dono) throws RemoteException;
 
     public ArrayList<Bicicleta> getRequisitadas(int id) throws RemoteException;
+
+    public String devolverBicicleta(int bd) throws RemoteException;
     
 }
 

@@ -150,6 +150,11 @@ public class Cliente {
                         
                         ArrayList<Bicicleta> requisitadas = servidor.getRequisitadas(id);
                         
+                        System.out.print("Que bicicleta deseja devolver (Insira o ID da bicicleta) : ");
+                        int bd = sc.nextInt();
+                        
+                        String resu = servidor.devolverBicicleta(bd);
+                        
                         
 
                     case 5:
