@@ -112,7 +112,7 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
         ArrayList<Bicicleta> aux = new ArrayList<>();
         for (int i = 0; bicicletas.size() > i; i++) {
             String des = bicicletas.get(i).getDescricao();
-            
+
             if (des.contains(keyword)) {
                 aux.add(bicicletas.get(i));
             }
@@ -124,6 +124,53 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
 
     @Override
     public ArrayList getListaRecursos() throws RemoteException {
-          return bicicletas;
+        return bicicletas;
+    }
+
+    //
+    @Override
+    public ArrayList<Bicicleta> getListaDisponiveis() throws RemoteException {
+        ArrayList<Bicicleta> aux = new ArrayList<>();
+        for (int i = 0; bicicletas.size() > i; i++) {
+
+            if (bicicletas.get(i).getDisponibilidade()) {
+                aux.add(bicicletas.get(i));
+            }
+
+        }
+
+        return aux;
+    }
+
+    @Override
+    public String requisitarBicicleta(int id, int dono) throws RemoteException {
+
+        for (int i = 0; bicicletas.size() > i; i++) {
+
+            if (bicicletas.get(i).getId() == id) {
+                bicicletas.get(i).setDisponibilidade(false);
+                bicicletas.get(i).setRequisitante(dono);
+                return "Bicicleta requisitada com sucesso.";
+            }
+
+        }
+
+        return "Erro ao requisitar bicicleta.";
+    }
+
+    @Override
+    public ArrayList<Bicicleta> getRequisitadas(int id) throws RemoteException {
+        ArrayList<Bicicleta> req = new ArrayList<>();
+
+        for (int i = 0; bicicletas.size() > i; i++) {
+
+            //Caso esteja requisitada e o id seja o do requisitante
+            if (!bicicletas.get(i).getDisponibilidade() && bicicletas.get(i).getRequisitante() == id) {
+                req.add(bicicletas.get(i));
+            }
+
+        }
+
+        return req;
     }
 }

@@ -25,6 +25,12 @@ public interface interfaceServidor extends java.rmi.Remote   {
     public ArrayList procurarKeyword(String keyword) throws RemoteException;
 
     public ArrayList<Bicicleta> getListaRecursos() throws RemoteException;
+
+    public ArrayList<Bicicleta> getListaDisponiveis() throws RemoteException;
+
+    public String requisitarBicicleta(int id,int dono) throws RemoteException;
+
+    public ArrayList<Bicicleta> getRequisitadas(int id) throws RemoteException;
     
 }
 

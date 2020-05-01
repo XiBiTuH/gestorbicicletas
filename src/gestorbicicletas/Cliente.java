@@ -125,15 +125,39 @@ public class Cliente {
                         }
                         break;
 
-                    case 5:
+                    case 3:
+                        System.out.println("Estas são as bicicletas disponíveis para requisitar : \n");
+                        ArrayList<Bicicleta> disponiveis = servidor.getListaDisponiveis();
+
+                        for (int i = 0; i < disponiveis.size(); i++) {
+                            System.out.println(disponiveis.get(i).toString());
+                        }
+
+                        System.out.print("Que bicicleta deseja requisitar (Insira o ID da mesma) : ");
+
+                        int c = sc.nextInt();
+
+                        String resultado = servidor.requisitarBicicleta(c, id);
+
+                        System.out.println(resultado);
+
+                        break;
+
                         
+                        
+                    case 4:
+                        System.out.println("Estas são as suas bicicletas requisitadas : ");
+                        
+                        ArrayList<Bicicleta> requisitadas = servidor.getRequisitadas(id);
+                        
+                        
+
+                    case 5:
+
                         ArrayList<Bicicleta> aux = servidor.getListaRecursos();
                         for (int i = 0; i < aux.size(); i++) {
-                            System.out.println(aux.get(i).toString()); 
+                            System.out.println(aux.get(i).toString());
                         }
-                        
-                        
-                        
 
                 }
 

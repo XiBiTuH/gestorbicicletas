@@ -26,6 +26,7 @@ public class Bicicleta implements Serializable {
     }
 
     private int id;
+    private int requisitante;
     private String rodas;
     private String transmissao;
     private String travoes;
@@ -38,6 +39,7 @@ public class Bicicleta implements Serializable {
     public Bicicleta(int dono, String quadro, String rodas, String transmissao, String travoes, String espigao, String guiador, String descricao) {
 
         this.dono = dono;
+        this.requisitante = -1;
         this.quadro = quadro;
         this.rodas = rodas;
         this.transmissao = transmissao;
@@ -62,12 +64,20 @@ public class Bicicleta implements Serializable {
         }
     }
 
-    public int getDono() {
-        return dono;
+    public int getRequisitante() {
+        return requisitante;
+    }
+
+    public void setRequisitante(int requisitante) {
+        this.requisitante = requisitante;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getDono() {
+        return dono;
     }
 
     public void setDono(int dono) {
@@ -126,8 +136,8 @@ public class Bicicleta implements Serializable {
         return disponibilidade;
     }
 
-    public void getDisponibilidade(String disponibilidade) {
-        this.quadro = disponibilidade;
+    public void setDisponibilidade(Boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
 }
