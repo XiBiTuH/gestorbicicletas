@@ -121,4 +121,9 @@ public class Servidor extends UnicastRemoteObject implements interfaceServidor {
 
         return aux;
     }
+
+    @Override
+    public ArrayList getListaRecursos() throws RemoteException {
+          return bicicletas;
+    }
 }

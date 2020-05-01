@@ -12,9 +12,10 @@ import java.rmi.server.UnicastRemoteObject;
  *
  * @author Pedro
  */
-public class Bicicleta implements Serializable  {
+public class Bicicleta implements Serializable {
 
     private String quadro;
+    private static int counter = 1;
 
     public String getDescricao() {
         return descricao;
@@ -23,6 +24,8 @@ public class Bicicleta implements Serializable  {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    private int id;
     private String rodas;
     private String transmissao;
     private String travoes;
@@ -32,7 +35,7 @@ public class Bicicleta implements Serializable  {
     private int dono;
     private Boolean disponibilidade;
 
-    public Bicicleta(int dono, String quadro, String rodas, String transmissao, String travoes, String espigao, String guiador,String descricao) {
+    public Bicicleta(int dono, String quadro, String rodas, String transmissao, String travoes, String espigao, String guiador, String descricao) {
 
         this.dono = dono;
         this.quadro = quadro;
@@ -43,17 +46,28 @@ public class Bicicleta implements Serializable  {
         this.guiador = guiador;
         this.descricao = descricao;
         this.disponibilidade = true;
+        this.id = counter;
+        counter++;
 
     }
 
     @Override
     public String toString() {
-        return "Bicicleta{" + "quadro=" + quadro + ", rodas=" + rodas + ", transmissao=" + transmissao + ", travoes=" + travoes + ", espigao=" + espigao + ", guiador=" + guiador + ", dono=" + dono + ", disponibilidade=" + disponibilidade + '}';
-    }
+        if (this.disponibilidade == true) {
+            return " Id = " + id + " \n Quadro=" + quadro + "\n Rodas=" + rodas + "\n transmissao = " + transmissao + "\n Travoes = " + travoes + "\n Espigao= " + espigao + "\n Guiador= " + guiador + "\n Dono=" + dono + "\n Disponibilidade = Disponível" + "\n Descricao : " + descricao + "\n\n";
 
+        } else {
+            return " Id = " + id + " \n Quadro=" + quadro + "\n Rodas=" + rodas + "\n transmissao = " + transmissao + "\n Travoes = " + travoes + "\n Espigao= " + espigao + "\n Guiador= " + guiador + "\n Dono=" + dono + "\n Disponibilidade = Reservado" + "\n Descricao : " + descricao + "\n\n";
+
+        }
+    }
 
     public int getDono() {
         return dono;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setDono(int dono) {
@@ -75,7 +89,6 @@ public class Bicicleta implements Serializable  {
     public void setRodas(String rodas) {
         this.rodas = rodas;
     }
-
 
     public String getGuiador() {
         return guiador;
@@ -108,7 +121,6 @@ public class Bicicleta implements Serializable  {
     public void setEspigao(String espigao) {
         this.espigao = espigao;
     }
-
 
     public Boolean getDisponibilidade() {
         return disponibilidade;

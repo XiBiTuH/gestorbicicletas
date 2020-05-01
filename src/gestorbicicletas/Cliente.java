@@ -83,8 +83,7 @@ public class Cliente {
 
                             System.out.print("Guiador : ");
                             String guiador = sc.nextLine();
-                            
-                            
+
                             System.out.print("Insira uma breve descrição da bicicleta : ");
                             String descricao = sc.nextLine();
 
@@ -97,7 +96,7 @@ public class Cliente {
 
                                 //Criamos uma bicicleta com os dados fornecidos
                                 //System.out.println("olaolaolaol");
-                                String res = servidor.adicionarBicicleta(id, quadro, rodas, transm, travoes, espigao, guiador,descricao);
+                                String res = servidor.adicionarBicicleta(id, quadro, rodas, transm, travoes, espigao, guiador, descricao);
 
                                 if (res.equals("succ")) {
                                     System.out.println("Bicicleta inserida com sucesso");
@@ -105,26 +104,37 @@ public class Cliente {
                                     break;
                                 } else {
                                     System.out.println("Erro na inserção da bicicleta");
-                                    }
                                 }
-                            
-                            
                             }
-                        
-                        
+
+                        }
+
                         break;
-                        
 
                     case 2:
+
+                        System.out.println("Que 'keyword' pretende pesquisar ? ");
+                        String keyword = sc.next();
+                        ArrayList<Bicicleta> bics = servidor.procurarKeyword(keyword);
+
+                        System.out.println("Estes são os resultados da sua pesquisa: ");
+
+                        for (int i = 0; i < bics.size(); i++) {
+                            System.out.println(bics.get(i).toString());
+
+                        }
+                        break;
+
+                    case 5:
                         
-                            System.out.println("Que 'keyword' pretende pesquisar ? ");
-                            String keyword = sc.next();
-                            ArrayList<Bicicleta> bics = servidor.procurarKeyword(keyword);
-                            
+                        ArrayList<Bicicleta> aux = servidor.getListaRecursos();
+                        for (int i = 0; i < aux.size(); i++) {
+                            System.out.println(aux.get(i).toString()); 
+                        }
                         
                         
                         
-                             
+
                 }
 
             }
